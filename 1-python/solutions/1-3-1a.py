@@ -22,5 +22,6 @@ avg_grade = average(grades)
 avg_numbers = average(numbers)
 print(f"Average of {grades} is {avg_grade}")
 print(f"Average of {numbers} is {avg_numbers}")
+print("HELLO WORLD")
 
 
