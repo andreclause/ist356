@@ -1,5 +1,8 @@
-import streamlit as st
+import streamlit as st  # type: ignore
 import pandas as pd
+
+# Streamlit is a third-party module; its implementation is provided by the
+# installed Streamlit package rather than by a local class in this file.
 
 exams = pd.read_csv('https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/exam-scores/exam-scores.csv')
 
@@ -27,12 +30,12 @@ st.dataframe(group2)
 st.title("Pivot Table Examples")
 
 pivot1 = exams.pivot_table(
-    index=['Class_Section'],
-    columns=['Exam_Version'],
-    values=['Student_Score'],
+    index='Class_Section',
+    columns='Exam_Version',
+    values='Student_Score',
     aggfunc='count',
     fill_value=0,
-)
+).reset_index()
 
 st.dataframe(pivot1)
 
@@ -40,6 +43,6 @@ st.title("Melt Example")
 
 melt1 = pivot1.melt(id_vars=['Class_Section'], 
                     var_name='Exam_Version',
-                    value_name='Student_Count',)
+                    value_name='Student_Count')
 
 st.dataframe(melt1)
