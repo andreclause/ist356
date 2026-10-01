@@ -38,4 +38,8 @@ st.dataframe(pivot1)
 
 st.title("Melt Example")
 
-melt1 = pivot1.melt(ignore)
+melt1 = pivot1.melt(id_vars=['Class_Section'], 
+                    var_name='Exam_Version',
+                    value_name='Student_Count',)
+
+st.dataframe(melt1)
