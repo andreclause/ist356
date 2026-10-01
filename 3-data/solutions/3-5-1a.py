@@ -1,3 +1,30 @@
+import streamlit as st
 import pandas as pd
+
 exams = pd.read_csv('https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/exam-scores/exam-scores.csv')
-exams.sample(10)
+
+
+
+st.dataframe(exams)
+st.write(list(exams.columns))
+
+st.title("Group by examples")
+group1 = exams.broupby(by=['Letter_Grade']).agg({'Letter_grade': 'count'})
+
+group1 = group1.rename(columns={'Letter_grade': 'Student_count'})
+
+st.dataframe(group1)
+
+#group by section and exam version and average the scores - here are the column names 0:"Class_Section"
+
+
+group2 = exams.groupby(by=[Class_Section', 'Exam_Version'])\
+    .agg({'Student_Score': 'mean', 'Percentage': 'count' })\
+    .rename(columns={'Student_Score': 'Average_Score', 'Percentage': 'Student_Count})
+
+st.dataframe(group2)
+
+st.title("Pivot Table Examples")
+
+pivot1 = exam.pivot_table(index=['Class_Section'], columns=['Exam_Version'], values=['Student_Score'], aggfunc='count', fill_value=0)
+
