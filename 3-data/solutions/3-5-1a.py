@@ -28,3 +28,4 @@ st.title("Pivot Table Examples")
 
 pivot1 = exam.pivot_table(index=['Class_Section'], columns=['Exam_Version'], values=['Student_Score'], aggfunc='count', fill_value=0)
 
+st.dataframe(pivot1)
